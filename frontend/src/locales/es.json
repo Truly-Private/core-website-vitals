@@ -1,0 +1,450 @@
+{
+  "app": {
+    "name": "Core Website Vitals",
+    "tagline": "Plataforma Integral de Análisis SEO",
+    "description": "Analiza el rendimiento de tu sitio web con Core Website Vitals"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "info": "Información",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "update": "Actualizar",
+    "confirm": "Confirmar",
+    "close": "Cerrar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Enviar",
+    "retry": "Reintentar",
+    "refresh": "Actualizar",
+    "download": "Descargar",
+    "export": "Exportar",
+    "import": "Importar",
+    "copy": "Copiar",
+    "share": "Compartir",
+    "settings": "Configuración",
+    "profile": "Perfil",
+    "help": "Ayuda",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "view": "Ver",
+    "more": "Más",
+    "less": "Menos",
+    "all": "Todos",
+    "none": "Ninguno",
+    "yes": "Sí",
+    "no": "No",
+    "on": "Encendido",
+    "off": "Apagado",
+    "enabled": "Habilitado",
+    "disabled": "Deshabilitado",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "online": "En línea",
+    "offline": "Fuera de línea",
+    "connected": "Conectado",
+    "disconnected": "Desconectado"
+  },
+  "navigation": {
+    "home": "Inicio",
+    "dashboard": "Panel",
+    "analysis": "Análisis",
+    "new_analysis": "Nuevo Análisis",
+    "history": "Historial",
+    "reports": "Reportes",
+    "billing": "Facturación",
+    "logout": "Cerrar Sesión",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse"
+  },
+  "auth": {
+    "login": {
+      "title": "Iniciar Sesión",
+      "subtitle": "Bienvenido de vuelta a Core Website Vitals",
+      "email": "Dirección de correo electrónico",
+      "password": "Contraseña",
+      "remember_me": "Recordarme",
+      "forgot_password": "¿Olvidaste tu contraseña?",
+      "sign_in": "Iniciar sesión",
+      "no_account": "¿No tienes una cuenta?",
+      "sign_up": "Regístrate",
+      "or": "O",
+      "google": "Continuar con Google",
+      "github": "Continuar con GitHub",
+      "errors": {
+        "invalid_credentials": "Correo electrónico o contraseña inválidos",
+        "email_not_verified": "Por favor verifica tu dirección de correo electrónico",
+        "account_locked": "La cuenta ha sido bloqueada debido a demasiados intentos fallidos"
+      }
+    },
+    "register": {
+      "title": "Crear Cuenta",
+      "subtitle": "Comienza con Core Website Vitals",
+      "full_name": "Nombre completo",
+      "email": "Dirección de correo electrónico",
+      "password": "Contraseña",
+      "confirm_password": "Confirmar contraseña",
+      "terms": "Acepto los {terms} y la {privacy}",
+      "terms_link": "Términos de Servicio",
+      "privacy_link": "Política de Privacidad",
+      "create_account": "Crear cuenta",
+      "already_have_account": "¿Ya tienes una cuenta?",
+      "sign_in": "Iniciar sesión",
+      "verification_sent": "Correo de verificación enviado a {email}",
+      "errors": {
+        "email_exists": "Ya existe una cuenta con este correo electrónico",
+        "weak_password": "La contraseña es demasiado débil",
+        "passwords_dont_match": "Las contraseñas no coinciden",
+        "terms_required": "Debes aceptar los términos y la política de privacidad"
+      }
+    },
+    "forgot_password": {
+      "title": "Restablecer Contraseña",
+      "subtitle": "Ingresa tu correo electrónico para recibir un enlace de restablecimiento",
+      "email": "Dirección de correo electrónico",
+      "send_reset": "Enviar enlace de restablecimiento",
+      "back_to_login": "Volver al inicio de sesión",
+      "reset_sent": "Enlace de restablecimiento de contraseña enviado a {email}",
+      "errors": {
+        "email_not_found": "No se encontró una cuenta con esta dirección de correo electrónico"
+      }
+    },
+    "reset_password": {
+      "title": "Establecer Nueva Contraseña",
+      "subtitle": "Ingresa tu nueva contraseña",
+      "password": "Nueva contraseña",
+      "confirm_password": "Confirmar nueva contraseña",
+      "reset_password": "Restablecer contraseña",
+      "success": "La contraseña ha sido restablecida exitosamente",
+      "errors": {
+        "invalid_token": "Token de restablecimiento inválido o expirado",
+        "passwords_dont_match": "Las contraseñas no coinciden"
+      }
+    },
+    "logout": {
+      "confirm": "¿Estás seguro de que quieres cerrar sesión?",
+      "success": "Has cerrado sesión exitosamente"
+    }
+  },
+  "dashboard": {
+    "title": "Panel",
+    "welcome": "Bienvenido de vuelta, {name}",
+    "summary": {
+      "title": "Resumen",
+      "total_analyses": "Análisis totales",
+      "pending_analyses": "Análisis pendientes",
+      "average_score": "Puntuación promedio",
+      "improvement": "Mejora"
+    },
+    "recent_analyses": {
+      "title": "Análisis Recientes",
+      "no_analyses": "No hay análisis recientes",
+      "view_all": "Ver todos los análisis"
+    },
+    "quick_actions": {
+      "title": "Acciones Rápidas",
+      "new_analysis": "Nuevo Análisis",
+      "view_reports": "Ver Reportes",
+      "upgrade_plan": "Actualizar Plan"
+    },
+    "performance_trends": {
+      "title": "Tendencias de Rendimiento",
+      "last_30_days": "Últimos 30 días",
+      "score_trend": "Tendencia de Puntuación",
+      "no_data": "No hay datos disponibles"
+    }
+  },
+  "analysis": {
+    "title": "Análisis SEO",
+    "new_analysis": "Nuevo Análisis",
+    "submit_analysis": "Enviar Análisis",
+    "url": "URL del Sitio Web",
+    "url_placeholder": "https://ejemplo.com",
+    "analysis_type": "Tipo de Análisis",
+    "types": {
+      "full_seo": "Análisis SEO Completo",
+      "technical_seo": "SEO Técnico",
+      "content_analysis": "Análisis de Contenido",
+      "performance_audit": "Auditoría de Rendimiento"
+    },
+    "target_keywords": "Palabras Clave Objetivo",
+    "keywords_placeholder": "Ingresa palabras clave separadas por comas",
+    "advanced_options": "Opciones Avanzadas",
+    "status": {
+      "PENDING": "Pendiente",
+      "IN_PROGRESS": "En Progreso",
+      "SUCCESS": "Completado",
+      "FAILED": "Fallido",
+      "CANCELLED": "Cancelado"
+    },
+    "actions": {
+      "view_results": "Ver Resultados",
+      "retry": "Reintentar",
+      "cancel": "Cancelar",
+      "delete": "Eliminar",
+      "export": "Exportar",
+      "share": "Compartir"
+    },
+    "results": {
+      "title": "Resultados del Análisis",
+      "overall_score": "Puntuación General",
+      "analyzed_url": "URL Analizada",
+      "analysis_date": "Fecha de Análisis",
+      "analysis_type": "Tipo de Análisis",
+      "recommendations": "Recomendaciones",
+      "warnings": "Advertencias",
+      "technical_details": "Detalles Técnicos",
+      "no_results": "No hay resultados disponibles",
+      "view_full_report": "Ver Reporte Completo"
+    },
+    "batch": {
+      "title": "Análisis por Lotes",
+      "description": "Analiza múltiples URLs a la vez",
+      "urls": "URLs",
+      "urls_placeholder": "Ingresa URLs separadas por nuevas líneas",
+      "max_urls": "Máximo {count} URLs permitidas",
+      "submit": "Enviar Análisis por Lotes"
+    },
+    "history": {
+      "title": "Historial de Análisis",
+      "filters": {
+        "status": "Estado",
+        "type": "Tipo",
+        "date_range": "Rango de Fechas"
+      },
+      "no_analyses": "No se encontraron análisis",
+      "load_more": "Cargar Más"
+    }
+  },
+  "reports": {
+    "title": "Reportes",
+    "generate_report": "Generar Reporte",
+    "report_types": {
+      "summary": "Reporte Resumen",
+      "detailed": "Reporte Detallado",
+      "comparison": "Reporte de Comparación",
+      "trend": "Reporte de Tendencias"
+    },
+    "export_formats": {
+      "pdf": "PDF",
+      "csv": "CSV",
+      "json": "JSON",
+      "html": "HTML"
+    },
+    "no_reports": "No hay reportes disponibles",
+    "generating": "Generando reporte...",
+    "download_ready": "El reporte está listo para descargar"
+  },
+  "profile": {
+    "title": "Perfil",
+    "personal_info": "Información Personal",
+    "account_settings": "Configuración de Cuenta",
+    "subscription": "Suscripción",
+    "usage": "Uso",
+    "api_keys": "Claves API",
+    "webhooks": "Webhooks",
+    "fields": {
+      "full_name": "Nombre Completo",
+      "email": "Correo Electrónico",
+      "avatar": "Avatar",
+      "timezone": "Zona Horaria",
+      "language": "Idioma",
+      "theme": "Tema"
+    },
+    "change_password": "Cambiar Contraseña",
+    "current_password": "Contraseña Actual",
+    "new_password": "Nueva Contraseña",
+    "confirm_password": "Confirmar Contraseña",
+    "update_profile": "Actualizar Perfil",
+    "profile_updated": "Perfil actualizado exitosamente",
+    "password_changed": "Contraseña cambiada exitosamente"
+  },
+  "settings": {
+    "title": "Configuración",
+    "general": "General",
+    "notifications": "Notificaciones",
+    "privacy": "Privacidad",
+    "integrations": "Integraciones",
+    "advanced": "Avanzado",
+    "theme": {
+      "title": "Tema",
+      "light": "Claro",
+      "dark": "Oscuro",
+      "system": "Sistema"
+    },
+    "language": {
+      "title": "Idioma",
+      "english": "Inglés",
+      "spanish": "Español"
+    },
+    "notifications": {
+      "email": "Notificaciones por Correo",
+      "push": "Notificaciones Push",
+      "analysis_complete": "Análisis Completado",
+      "weekly_reports": "Reportes Semanales",
+      "marketing": "Correos de Marketing"
+    },
+    "privacy": {
+      "profile_visibility": "Visibilidad del Perfil",
+      "data_sharing": "Compartir Datos",
+      "analytics": "Seguimiento de Análisis"
+    },
+    "save_settings": "Guardar Configuración",
+    "settings_saved": "Configuración guardada exitosamente"
+  },
+  "billing": {
+    "title": "Facturación y Suscripción",
+    "current_plan": "Plan Actual",
+    "usage": "Uso",
+    "billing_history": "Historial de Facturación",
+    "payment_method": "Método de Pago",
+    "plans": {
+      "free": {
+        "name": "Gratis",
+        "price": "$0",
+        "period": "para siempre",
+        "features": [
+          "5 análisis por mes",
+          "Reportes básicos",
+          "Soporte por correo"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "$29",
+        "period": "por mes",
+        "features": [
+          "100 análisis por mes",
+          "Reportes avanzados",
+          "Soporte prioritario",
+          "Acceso a API"
+        ]
+      },
+      "business": {
+        "name": "Negocio",
+        "price": "$99",
+        "period": "por mes",
+        "features": [
+          "500 análisis por mes",
+          "Reportes personalizados",
+          "Colaboración en equipo",
+          "Reportes de marca blanca"
+        ]
+      },
+      "enterprise": {
+        "name": "Empresa",
+        "price": "Personalizado",
+        "period": "precio",
+        "features": [
+          "Análisis ilimitados",
+          "Integraciones personalizadas",
+          "Soporte dedicado",
+          "Garantía SLA"
+        ]
+      }
+    },
+    "upgrade": "Actualizar Plan",
+    "downgrade": "Degradar Plan",
+    "cancel_subscription": "Cancelar Suscripción",
+    "resume_subscription": "Reanudar Suscripción",
+    "usage_stats": {
+      "analyses_used": "Análisis Utilizados",
+      "storage_used": "Almacenamiento Utilizado",
+      "api_calls": "Llamadas API"
+    }
+  },
+  "errors": {
+    "generic": "Ocurrió un error inesperado",
+    "network": "Error de red. Por favor verifica tu conexión.",
+    "unauthorized": "No tienes autorización para realizar esta acción",
+    "forbidden": "Acceso denegado",
+    "not_found": "El recurso solicitado no fue encontrado",
+    "validation": "Por favor verifica tu entrada e intenta de nuevo",
+    "server": "Error del servidor. Por favor intenta más tarde",
+    "rate_limit": "Demasiadas solicitudes. Por favor intenta más tarde",
+    "maintenance": "El servicio está en mantenimiento. Por favor intenta más tarde"
+  },
+  "success": {
+    "analysis_submitted": "Análisis enviado exitosamente",
+    "analysis_cancelled": "Análisis cancelado exitosamente",
+    "analysis_deleted": "Análisis eliminado exitosamente",
+    "profile_updated": "Perfil actualizado exitosamente",
+    "settings_saved": "Configuración guardada exitosamente",
+    "password_changed": "Contraseña cambiada exitosamente",
+    "subscription_updated": "Suscripción actualizada exitosamente",
+    "report_generated": "Reporte generado exitosamente",
+    "data_exported": "Datos exportados exitosamente",
+    "webhook_created": "Webhook creado exitosamente",
+    "api_key_created": "Clave API creada exitosamente"
+  },
+  "notifications": {
+    "analysis_complete": {
+      "title": "Análisis Completado",
+      "message": "Tu análisis SEO para {url} está listo"
+    },
+    "analysis_failed": {
+      "title": "Análisis Fallido",
+      "message": "El análisis para {url} falló: {error}"
+    },
+    "subscription_expiring": {
+      "title": "Suscripción Expirando",
+      "message": "Tu suscripción expira en {days} días"
+    },
+    "usage_limit_reached": {
+      "title": "Límite de Uso Alcanzado",
+      "message": "Has alcanzado tu límite mensual de análisis"
+    },
+    "new_features": {
+      "title": "Nuevas Características Disponibles",
+      "message": "Descubre las últimas características en Core Website Vitals"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Core Website Vitals. Todos los derechos reservados.",
+    "terms": "Términos de Servicio",
+    "privacy": "Política de Privacidad",
+    "contact": "Contáctanos",
+    "documentation": "Documentación",
+    "api": "Referencia API",
+    "status": "Estado",
+    "blog": "Blog"
+  },
+  "meta": {
+    "home": {
+      "title": "Core Website Vitals - Plataforma de Análisis SEO",
+      "description": "Plataforma integral de análisis SEO para especialistas en marketing digital y desarrolladores"
+    },
+    "dashboard": {
+      "title": "Panel",
+      "description": "Tu panel de análisis SEO"
+    },
+    "analysis": {
+      "title": "Análisis SEO",
+      "description": "Analiza el rendimiento SEO de tu sitio web"
+    },
+    "reports": {
+      "title": "Reportes",
+      "description": "Genera reportes detallados de SEO"
+    },
+    "profile": {
+      "title": "Perfil",
+      "description": "Gestiona tu perfil de cuenta"
+    },
+    "settings": {
+      "title": "Configuración",
+      "description": "Configura los ajustes de tu cuenta"
+    },
+    "billing": {
+      "title": "Facturación",
+      "description": "Gestiona tu suscripción y facturación"
+    }
+  }
+}

@@ -1,0 +1,451 @@
+{
+  "app": {
+    "name": "Core Website Vitals",
+    "tagline": "Comprehensive SEO Analysis Platform",
+    "description": "Analyze your website's performance with Core Website Vitals"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "update": "Update",
+    "confirm": "Confirm",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "retry": "Retry",
+    "refresh": "Refresh",
+    "download": "Download",
+    "export": "Export",
+    "import": "Import",
+    "copy": "Copy",
+    "share": "Share",
+    "settings": "Settings",
+    "profile": "Profile",
+    "help": "Help",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "view": "View",
+    "more": "More",
+    "less": "Less",
+    "all": "All",
+    "none": "None",
+    "yes": "Yes",
+    "no": "No",
+    "on": "On",
+    "off": "Off",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "active": "Active",
+    "inactive": "Inactive",
+    "online": "Online",
+    "offline": "Offline",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "get_started": "Get Started"
+  },
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "analysis": "Analysis",
+    "new_analysis": "New Analysis",
+    "history": "History",
+    "reports": "Reports",
+    "billing": "Billing",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register"
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Welcome back to Core Website Vitals",
+      "email": "Email address",
+      "password": "Password",
+      "remember_me": "Remember me",
+      "forgot_password": "Forgot password?",
+      "sign_in": "Sign in",
+      "no_account": "Don't have an account?",
+      "sign_up": "Sign up",
+      "or": "Or",
+      "google": "Continue with Google",
+      "github": "Continue with GitHub",
+      "errors": {
+        "invalid_credentials": "Invalid email or password",
+        "email_not_verified": "Please verify your email address",
+        "account_locked": "Account has been locked due to too many failed attempts"
+      }
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Get started with Core Website Vitals",
+      "full_name": "Full name",
+      "email": "Email address",
+      "password": "Password",
+      "confirm_password": "Confirm password",
+      "terms": "I agree to the {terms} and {privacy}",
+      "terms_link": "Terms of Service",
+      "privacy_link": "Privacy Policy",
+      "create_account": "Create account",
+      "already_have_account": "Already have an account?",
+      "sign_in": "Sign in",
+      "verification_sent": "Verification email sent to {email}",
+      "errors": {
+        "email_exists": "An account with this email already exists",
+        "weak_password": "Password is too weak",
+        "passwords_dont_match": "Passwords don't match",
+        "terms_required": "You must agree to the terms and privacy policy"
+      }
+    },
+    "forgot_password": {
+      "title": "Reset Password",
+      "subtitle": "Enter your email to receive a reset link",
+      "email": "Email address",
+      "send_reset": "Send reset link",
+      "back_to_login": "Back to login",
+      "reset_sent": "Password reset link sent to {email}",
+      "errors": {
+        "email_not_found": "No account found with this email address"
+      }
+    },
+    "reset_password": {
+      "title": "Set New Password",
+      "subtitle": "Enter your new password",
+      "password": "New password",
+      "confirm_password": "Confirm new password",
+      "reset_password": "Reset password",
+      "success": "Password has been reset successfully",
+      "errors": {
+        "invalid_token": "Invalid or expired reset token",
+        "passwords_dont_match": "Passwords don't match"
+      }
+    },
+    "logout": {
+      "confirm": "Are you sure you want to sign out?",
+      "success": "You have been signed out successfully"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back, {name}",
+    "summary": {
+      "title": "Summary",
+      "total_analyses": "Total analyses",
+      "pending_analyses": "Pending analyses",
+      "average_score": "Average score",
+      "improvement": "Improvement"
+    },
+    "recent_analyses": {
+      "title": "Recent Analyses",
+      "no_analyses": "No recent analyses",
+      "view_all": "View all analyses"
+    },
+    "quick_actions": {
+      "title": "Quick Actions",
+      "new_analysis": "New Analysis",
+      "view_reports": "View Reports",
+      "upgrade_plan": "Upgrade Plan"
+    },
+    "performance_trends": {
+      "title": "Performance Trends",
+      "last_30_days": "Last 30 days",
+      "score_trend": "Score Trend",
+      "no_data": "No data available"
+    }
+  },
+  "analysis": {
+    "title": "SEO Analysis",
+    "new_analysis": "New Analysis",
+    "submit_analysis": "Submit Analysis",
+    "url": "Website URL",
+    "url_placeholder": "https://example.com",
+    "analysis_type": "Analysis Type",
+    "types": {
+      "full_seo": "Full SEO Analysis",
+      "technical_seo": "Technical SEO",
+      "content_analysis": "Content Analysis",
+      "performance_audit": "Performance Audit"
+    },
+    "target_keywords": "Target Keywords",
+    "keywords_placeholder": "Enter keywords separated by commas",
+    "advanced_options": "Advanced Options",
+    "status": {
+      "PENDING": "Pending",
+      "IN_PROGRESS": "In Progress",
+      "SUCCESS": "Completed",
+      "FAILED": "Failed",
+      "CANCELLED": "Cancelled"
+    },
+    "actions": {
+      "view_results": "View Results",
+      "retry": "Retry",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "export": "Export",
+      "share": "Share"
+    },
+    "results": {
+      "title": "Analysis Results",
+      "overall_score": "Overall Score",
+      "analyzed_url": "Analyzed URL",
+      "analysis_date": "Analysis Date",
+      "analysis_type": "Analysis Type",
+      "recommendations": "Recommendations",
+      "warnings": "Warnings",
+      "technical_details": "Technical Details",
+      "no_results": "No results available",
+      "view_full_report": "View Full Report"
+    },
+    "batch": {
+      "title": "Batch Analysis",
+      "description": "Analyze multiple URLs at once",
+      "urls": "URLs",
+      "urls_placeholder": "Enter URLs separated by new lines",
+      "max_urls": "Maximum {count} URLs allowed",
+      "submit": "Submit Batch Analysis"
+    },
+    "history": {
+      "title": "Analysis History",
+      "filters": {
+        "status": "Status",
+        "type": "Type",
+        "date_range": "Date Range"
+      },
+      "no_analyses": "No analyses found",
+      "load_more": "Load More"
+    }
+  },
+  "reports": {
+    "title": "Reports",
+    "generate_report": "Generate Report",
+    "report_types": {
+      "summary": "Summary Report",
+      "detailed": "Detailed Report",
+      "comparison": "Comparison Report",
+      "trend": "Trend Report"
+    },
+    "export_formats": {
+      "pdf": "PDF",
+      "csv": "CSV",
+      "json": "JSON",
+      "html": "HTML"
+    },
+    "no_reports": "No reports available",
+    "generating": "Generating report...",
+    "download_ready": "Report is ready for download"
+  },
+  "profile": {
+    "title": "Profile",
+    "personal_info": "Personal Information",
+    "account_settings": "Account Settings",
+    "subscription": "Subscription",
+    "usage": "Usage",
+    "api_keys": "API Keys",
+    "webhooks": "Webhooks",
+    "fields": {
+      "full_name": "Full Name",
+      "email": "Email",
+      "avatar": "Avatar",
+      "timezone": "Timezone",
+      "language": "Language",
+      "theme": "Theme"
+    },
+    "change_password": "Change Password",
+    "current_password": "Current Password",
+    "new_password": "New Password",
+    "confirm_password": "Confirm Password",
+    "update_profile": "Update Profile",
+    "profile_updated": "Profile updated successfully",
+    "password_changed": "Password changed successfully"
+  },
+  "settings": {
+    "title": "Settings",
+    "general": "General",
+    "notifications": "Notifications",
+    "privacy": "Privacy",
+    "integrations": "Integrations",
+    "advanced": "Advanced",
+    "theme": {
+      "title": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "language": {
+      "title": "Language",
+      "english": "English",
+      "spanish": "Spanish"
+    },
+    "notifications": {
+      "email": "Email Notifications",
+      "push": "Push Notifications",
+      "analysis_complete": "Analysis Complete",
+      "weekly_reports": "Weekly Reports",
+      "marketing": "Marketing Emails"
+    },
+    "privacy": {
+      "profile_visibility": "Profile Visibility",
+      "data_sharing": "Data Sharing",
+      "analytics": "Analytics Tracking"
+    },
+    "save_settings": "Save Settings",
+    "settings_saved": "Settings saved successfully"
+  },
+  "billing": {
+    "title": "Billing & Subscription",
+    "current_plan": "Current Plan",
+    "usage": "Usage",
+    "billing_history": "Billing History",
+    "payment_method": "Payment Method",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "price": "$0",
+        "period": "forever",
+        "features": [
+          "5 analyses per month",
+          "Basic reports",
+          "Email support"
+        ]
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "$29",
+        "period": "per month",
+        "features": [
+          "100 analyses per month",
+          "Advanced reports",
+          "Priority support",
+          "API access"
+        ]
+      },
+      "business": {
+        "name": "Business",
+        "price": "$99",
+        "period": "per month",
+        "features": [
+          "500 analyses per month",
+          "Custom reports",
+          "Team collaboration",
+          "White-label reports"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "price": "Custom",
+        "period": "pricing",
+        "features": [
+          "Unlimited analyses",
+          "Custom integrations",
+          "Dedicated support",
+          "SLA guarantee"
+        ]
+      }
+    },
+    "upgrade": "Upgrade Plan",
+    "downgrade": "Downgrade Plan",
+    "cancel_subscription": "Cancel Subscription",
+    "resume_subscription": "Resume Subscription",
+    "usage_stats": {
+      "analyses_used": "Analyses Used",
+      "storage_used": "Storage Used",
+      "api_calls": "API Calls"
+    }
+  },
+  "errors": {
+    "generic": "An unexpected error occurred",
+    "network": "Network error. Please check your connection.",
+    "unauthorized": "You are not authorized to perform this action",
+    "forbidden": "Access denied",
+    "not_found": "The requested resource was not found",
+    "validation": "Please check your input and try again",
+    "server": "Server error. Please try again later",
+    "rate_limit": "Too many requests. Please try again later",
+    "maintenance": "Service is under maintenance. Please try again later"
+  },
+  "success": {
+    "analysis_submitted": "Analysis submitted successfully",
+    "analysis_cancelled": "Analysis cancelled successfully",
+    "analysis_deleted": "Analysis deleted successfully",
+    "profile_updated": "Profile updated successfully",
+    "settings_saved": "Settings saved successfully",
+    "password_changed": "Password changed successfully",
+    "subscription_updated": "Subscription updated successfully",
+    "report_generated": "Report generated successfully",
+    "data_exported": "Data exported successfully",
+    "webhook_created": "Webhook created successfully",
+    "api_key_created": "API key created successfully"
+  },
+  "notifications": {
+    "analysis_complete": {
+      "title": "Analysis Complete",
+      "message": "Your SEO analysis for {url} is ready"
+    },
+    "analysis_failed": {
+      "title": "Analysis Failed",
+      "message": "Analysis for {url} failed: {error}"
+    },
+    "subscription_expiring": {
+      "title": "Subscription Expiring",
+      "message": "Your subscription expires in {days} days"
+    },
+    "usage_limit_reached": {
+      "title": "Usage Limit Reached",
+      "message": "You have reached your monthly analysis limit"
+    },
+    "new_features": {
+      "title": "New Features Available",
+      "message": "Check out the latest features in Core Website Vitals"
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Core Website Vitals. All rights reserved.",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "contact": "Contact Us",
+    "documentation": "Documentation",
+    "api": "API Reference",
+    "status": "Status",
+    "blog": "Blog"
+  },
+  "meta": {
+    "home": {
+      "title": "Core Website Vitals - SEO Analysis Platform",
+      "description": "Comprehensive SEO analysis platform for digital marketers and developers"
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Your SEO analysis dashboard"
+    },
+    "analysis": {
+      "title": "SEO Analysis",
+      "description": "Analyze your website's SEO performance"
+    },
+    "reports": {
+      "title": "Reports",
+      "description": "Generate detailed SEO reports"
+    },
+    "profile": {
+      "title": "Profile",
+      "description": "Manage your account profile"
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Configure your account settings"
+    },
+    "billing": {
+      "title": "Billing",
+      "description": "Manage your subscription and billing"
+    }
+  }
+}

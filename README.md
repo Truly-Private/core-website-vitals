@@ -1,217 +1,508 @@
-# Advanced SEO Analyzer: Comprehensive Python SEO Audit Tool 🐍📊
+# Core Website Vitals: SaaS SEO Analysis Platform 🚀
 
-[![Python Version](https://img.shields.io/badge/python-3.7%2B-blue.svg)](https://www.python.org/downloads/)
+[![Python Version](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
+[![Vue.js Version](https://img.shields.io/badge/vue.js-3.x-green.svg)](https://vuejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](CONTRIBUTING.md)
 
-The **Advanced SEO Analyzer** is a versatile Python-based command-line tool and web service for performing a thorough SEO audit of any webpage. It's designed to be modular, allowing for easy expansion and customization of SEO checks to help you effectively optimize your web presence.
+**Core Website Vitals** is a comprehensive SaaS platform that transforms the command-line python-seo-analyzer tool into a user-friendly web application. Built with Vue.js 3, FastAPI, and Supabase, it provides powerful SEO analysis capabilities with real-time updates, multi-tenant support, and enterprise-grade features.
 
-Discover key insights into your website's on-page, technical, and content SEO. Use this information to improve search engine rankings and enhance user experience.
+## 🌟 Platform Overview
 
-## ✨ Key Features
+Core Website Vitals democratizes advanced SEO analysis by providing:
 
-This SEO audit tool provides a detailed analysis across several key areas:
+- **Full-Stack Web Application**: Modern Vue.js 3 frontend with FastAPI backend
+- **Multi-Tenant SaaS Architecture**: Secure user authentication and data isolation
+- **Real-Time Analysis**: Live updates and progress tracking
+- **Comprehensive SEO Audits**: On-page, technical, content, and performance analysis
+- **Historical Tracking**: Track SEO progress over time
+- **Team Collaboration**: Share analyses and collaborate with team members
+- **Export & Reporting**: Multiple export formats (PDF, CSV, JSON, HTML)
 
-**1. On-Page Analysis (`OnPageAnalyzer`):**
-   - **Meta Tags**: Title (content, length, duplication), Description (content, length).
-   - **Heading Structure**: H1-H6 content, counts, H1 uniqueness.
-   - **Image SEO**: Alt attributes, responsive image patterns (`srcset`, `picture`), aspect ratio hints.
-   - **Link Audit**: Internal/external link counts, no-follow internal links, anchor text length, active broken link checking (limited), unsafe cross-origin links (`rel="noopener"`).
-   - **Content Quality**: Word count, content length sufficiency, paragraph count, Lorem Ipsum detection.
-   - **Technical Elements**: iFrames, Apple Touch Icon, external JS/CSS file counts, inline CSS, deprecated HTML tags, Flash detection, nested tables, framesets.
-   - **Social Media**: Open Graph and Twitter Card meta tag detection.
-   - **URL Structure**: SEO-friendly URL checks (length, depth, characters, file extensions).
-   - **Favicon**: Presence and URL.
+## 🏗️ Architecture
 
-**2. Technical SEO Analysis (`TechnicalSEOAnalyzer`):**
-   - **Core Web Vitals & Performance Hints**: HTML page size, DOM element count, HTML compression (GZIP), HTTP/2, HSTS, server signature, page caching headers (Cache-Control, Expires), CDN usage hints.
-   - **Crawlability & Indexability**: Doctype, charset, `robots.txt` (sitemap declarations, disallows), sitemap presence, meta viewport, AMP detection, language declaration, `hreflang` tags, canonical tags, `noindex`/`nofollow` meta tags.
-   - **Security**: SSL/HTTPS verification, mixed content detection, plaintext emails, meta refresh.
-   - **Structured Data**: JSON-LD, Microdata, general Schema.org detection.
-   - **Analytics**: Google Analytics (GA/Gtag) detection.
-   - **Server Configuration**: URL redirects tracing, custom 404 page checks, directory browsing checks, SPF records (requires `dnspython`), `ads.txt` presence.
+### Technology Stack
 
-**3. Content Analysis (`ContentAnalyzer`):**
-   - **Keyword Insights**: Top N keywords (keyword cloud data), target keyword usage analysis (presence, density).
-   - **Readability**: Flesch Reading Ease score.
-   - **Content Metrics**: Text-to-HTML ratio.
-   - **Quality Checks**: Basic spell check (requires `pyspellchecker`).
+| Component | Technology | Purpose |
+|-----------|------------|---------|
+| **Frontend** | Vue.js 3 + TypeScript + Vite | Modern reactive UI with type safety |
+| **Backend** | FastAPI + Python 3.11+ | High-performance async API |
+| **Database** | Supabase (PostgreSQL) | Managed database with RLS |
+| **Authentication** | Supabase Auth + JWT | Secure user management |
+| **Task Queue** | Celery + Redis | Background processing |
+| **Deployment** | Docker + Docker Compose | Containerized deployment |
 
-**4. SEO Scoring (`ScoringModule`):**
-   - **Categorized Scores**: On-Page, Technical, and Content SEO scores.
-   - **Overall SEO Score**: A detailed percentage showing the page's SEO status.
-   - **Actionable Feedback**: Lists of identified issues and successes for each category.
-   - **Configurable Weights**: Customize scoring criteria via a JSON configuration file.
-
-## 📂 Project Structure
+### System Architecture
 
 ```
-seo-analyzer/
-├── app.py                  # Main script to run the analyzer (CLI & API)
-├── requirements.txt        # Python dependencies
-├── README.md               # This file
-├── LICENSE                 # Project's MIT License
-├── modules/
-│   ├── __init__.py         # Makes 'modules' a Python package
-│   ├── base_module.py      # Abstract base class for SEO modules
-│   ├── on_page_analyzer.py
-│   ├── technical_seo_analyzer.py
-│   ├── content_analyzer.py
-│   └── scoring_module.py     # Calculates SEO scores
-└── reports/                  # Directory for saved JSON reports (created automatically)
+┌─────────────────┐    ┌──────────────┐    ┌─────────────────┐
+│   Vue.js SPA    │───▶│     Nginx    │───▶│  FastAPI Server │
+│   (Frontend)    │    │(Reverse Proxy)│    │   (Backend)     │
+└─────────────────┘    └──────────────┘    └────────┬────────┘
+         │                                           │
+         │ WebSocket/HTTP                            │ SQL Queries
+         ▼                                           ▼
+┌─────────────────┐                        ┌─────────────────┐
+│   Supabase DB   │                        │   Redis Cache   │
+│(Users, Results) │                        │  (Task Queue)   │
+└─────────────────┘                        └────────┬────────┘
+                                                     │
+                                                     │ Task Messages
+                                                     ▼
+                                            ┌─────────────────┐
+                                            │  Celery Worker  │
+                                            │ (SEO Analysis)  │
+                                            └─────────────────┘
 ```
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
-Follow these steps to set up and run the Advanced SEO Analyzer:
+### Prerequisites
 
-1.  **Clone the Repository (Optional):**
-    If you haven't already, clone this repository or ensure all project files are in a local directory.
-    ```bash
-    # git clone https://github.com/ihuzaifashoukat/seo-analyzer
-    # cd seo-analyzer
-    ```
+- Python 3.11+
+- Node.js 18+
+- Docker & Docker Compose
+- Supabase account
 
-2.  **Create and Activate a Virtual Environment (Recommended):**
-    ```bash
-    python -m venv venv
-    ```
-    Activate it:
-    -   Windows: `venv\Scripts\activate`
-    -   macOS/Linux: `source venv/bin/activate`
+### Installation
 
-3.  **Install Dependencies:**
-    Navigate to the project directory in your terminal and run:
-    ```bash
-    pip install -r requirements.txt
-    ```
-    This installs `requests`, `beautifulsoup4`, `dnspython`, `pyspellchecker`, and `Flask`.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/core-website-vitals.git
+   cd core-website-vitals
+   ```
 
-4.  **Run the Analyzer:**
-    The tool operates in two modes: Command-Line Interface (CLI) or as a Flask Web Service (API).
+2. **Environment Setup:**
+   ```bash
+   cp .env.example .env
+   # Edit .env with your configuration
+   ```
 
-    **A. Command-Line Interface (CLI) Mode:**
-    To analyze a specific URL, execute the `app.py` script from the project's root directory:
-    ```bash
-    python app.py <YOUR_WEBSITE_URL>
-    ```
-    Example:
-    ```bash
-    python app.py https://www.example.com
-    ```
+3. **Start with Docker Compose:**
+   ```bash
+   docker-compose up -d
+   ```
 
-    **CLI Optional Arguments:**
-    -   `--output <format>`: Specify report format. Supports `json` (default) and `txt`.
-        ```bash
-        python app.py https://www.example.com --output json
-        ```
-    -   `--keywords <keyword1> ["<keyword phrase 2>"] ...`: Define target keywords for content analysis.
-        ```bash
-        python app.py https://www.example.com --keywords "seo audit tool" "python seo"
-        ```
-    -   `--config <path_to_config.json>`: Use a custom JSON configuration file to override default settings and scoring weights.
-        ```bash
-        python app.py https://www.example.com --config custom_config.json
-        ```
-        Example `custom_config.json`:
-        ```json
-        {
-            "OnPageAnalyzer": {
-                "title_min_length": 25,
-                "desc_max_length": 155
-            },
-            "ScoringModule": {
-                "weights": { "title_score": {"max_points": 15, "weight": 1.5} },
-                "category_weights": { "OnPage": 0.50, "Technical": 0.30, "Content": 0.20 }
-            },
-            "Global": { "request_timeout": 15 }
-        }
-        ```
+4. **Access the application:**
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:8000
+   - API Documentation: http://localhost:8000/docs
 
-    **B. Flask Web Service (API) Mode:**
-    To run the analyzer as a web service, execute `app.py` without specifying a URL:
-    ```bash
-    python app.py
-    ```
-    The server will start by default on `http://127.0.0.1:5000/`.
-    -   You can use the `--config <path_to_config.json>` argument to load a custom configuration for the server. This config will apply to all API requests.
+### Manual Setup (Development)
 
-    **API Endpoint:**
-    -   `POST /analyze` or `GET /analyze`
-    -   **Parameters:**
-        -   `url` (required): The URL to analyze.
-        -   `keywords` (optional): Comma-separated string of keywords (for GET) or a JSON list (for POST).
-    -   **Example GET Request:**
-        ```
-        http://127.0.0.1:5000/analyze?url=https://www.example.com&keywords=seo%20tools,python
-        ```
-    -   **Example POST Request (with JSON body):**
-        ```json
-        {
-            "url": "https://www.example.com",
-            "keywords": ["seo tools", "python for seo"]
-        }
-        ```
-    -   **Response:** The API returns a JSON object identical to the report generated in CLI mode.
+#### Prerequisites Setup
 
-5.  **View Reports:**
-    -   **CLI Mode**: Analysis reports are saved in the `reports/` directory. Filenames include a timestamp and the domain.
-    -   **API Mode**: Responses are returned directly as JSON.
+1. **Install Supabase CLI:**
+   ```bash
+   npm install -g supabase
+   ```
 
-## 📄 Output JSON Structure
+2. **Start local services:**
+   ```bash
+   # Start Redis (required for Celery)
+   redis-server
+   
+   # Start Supabase local development
+   supabase start
+   ```
 
-The output JSON provides a detailed breakdown of the SEO audit:
+#### Backend Setup
 
-```json
-{
-  "analysis_timestamp": "YYYY-MM-DDTHH:MM:SS.ffffff",
-  "target_url": "https://www.analyzed-url.com/",
-  "domain": "www.analyzed-url.com",
-  "seo_attributes": {
-    "OnPageAnalyzer": {
-      // ... on-page metrics ...
-    },
-    "TechnicalSEOAnalyzer": {
-      // ... technical metrics ...
-    },
-    "ContentAnalyzer": {
-      // ... content analysis metrics ...
-    },
-    "ScoringModule": {
-        "on_page_score_percent": 85.0,
-        "on_page_issues": ["Issue 1...", "Issue 2..."],
-        "on_page_successes": ["Success 1...", "Success 2..."],
-        // ... other category scores, issues, successes ...
-        "overall_seo_score_percent": 82.5,
-        "scoring_status": "completed"
-    }
-  }
-}
+1. **Create virtual environment:**
+   ```bash
+   cd backend
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Environment variables are already configured in the root `.env` file:**
+   ```bash
+   # The .env file contains both local and production configurations
+   # For local development, it uses:
+   # - LOCAL_SUPABASE_URL=http://127.0.0.1:54321
+   # - LOCAL_SUPABASE_ANON_KEY=...
+   # - DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
+   ```
+
+4. **Database migrations are already applied:**
+   ```bash
+   # The initial schema has been migrated to both local and remote Supabase
+   # Tables created: profiles, analysis_tasks, notifications, analysis_history, user_settings
+   ```
+
+5. **Start the backend server:**
+   ```bash
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+   ```
+
+6. **Start Celery worker (in a separate terminal):**
+   ```bash
+   cd backend
+   source venv/bin/activate  # Activate virtual environment
+   celery -A app.worker.celery_app worker --loglevel=info
+   ```
+
+#### Frontend Setup
+
+1. **Install dependencies:**
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+2. **Environment variables are configured in the root `.env` file:**
+   ```bash
+   # Frontend uses these variables from the root .env:
+   # VITE_API_BASE_URL=http://localhost:8000/api/v1
+   # VITE_SUPABASE_URL=http://127.0.0.1:54321
+   # VITE_SUPABASE_ANON_KEY=...
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+#### Access Your Application
+
+Once all services are running, you can access:
+
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:8000
+- **API Documentation**: http://localhost:8000/docs
+- **Supabase Studio**: http://127.0.0.1:54323
+- **Mailpit (Email Testing)**: http://127.0.0.1:54324
+
+#### Development Workflow
+
+1. **Start all services in this order:**
+   ```bash
+   # Terminal 1: Start Redis
+   redis-server
+   
+   # Terminal 2: Start Supabase
+   supabase start
+   
+   # Terminal 3: Start Backend
+   cd backend && source venv/bin/activate
+   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+   
+   # Terminal 4: Start Celery Worker
+   cd backend && source venv/bin/activate
+   celery -A app.worker.celery_app worker --loglevel=info
+   
+   # Terminal 5: Start Frontend
+   cd frontend
+   npm run dev
+   ```
+
+2. **Check service health:**
+   ```bash
+   # Check Supabase status
+   supabase status
+   
+   # Check Redis connection
+   redis-cli ping
+   
+   # Check backend API
+   curl http://localhost:8000/health
+   ```
+
+### Development Commands
+
+#### Backend Commands
+```bash
+cd backend
+
+# Development server
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000  # Start API server
+
+# Background processing
+celery -A app.worker.celery_app worker --loglevel=info     # Start worker
+celery -A app.worker.celery_app beat --loglevel=info       # Start scheduler (optional)
+
+# Database operations
+supabase migration new <migration_name>                    # Create new migration
+supabase db push                                           # Push schema changes
+supabase db pull                                           # Pull schema changes
+supabase db reset                                          # Reset local database
+
+# Testing
+python -m pytest tests/ -v                                 # Run tests
+python -m pytest tests/ -v --cov=app                       # Run tests with coverage
+python -m pytest tests/unit/ -v                            # Run unit tests only
+python -m pytest tests/integration/ -v                     # Run integration tests only
+
+# Code quality
+black .                                                     # Format code
+isort .                                                     # Sort imports
+flake8 .                                                   # Lint code
+mypy .                                                     # Type checking
 ```
-### Support the Project
 
-If you find SEO ANALYZER useful and would like to support its development, consider buying me a coffee!
+#### Frontend Commands
+```bash
+cd frontend
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/ihuzaifashoukat)
-## 💡 Future Enhancements
+# Development
+npm run dev          # Start development server (http://localhost:3000)
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run serve        # Serve production build
 
-We're always looking to improve! Potential future features include:
--   **Advanced Rendering Analysis**: Integration with headless browsers (Selenium/Playwright) for JavaScript error testing, console logs, LCP/CLS metrics, and mobile snapshots.
--   **External API Integrations**: Checks for Safe Browsing, related keywords, and competitor domain analysis.
--   **Deeper Asset Analysis**: Modern image format usage (WebP, AVIF), image metadata, JS/CSS minification.
--   **Expanded Output Formats**: HTML reports, CSV exports.
--   **User Interface**: A dedicated web interface for easier interaction.
+# Testing
+npm run test:unit    # Run unit tests
+npm run test:e2e     # Run end-to-end tests
+npm run test:coverage # Run tests with coverage
+
+# Code quality
+npm run lint         # Run ESLint
+npm run lint:fix     # Fix ESLint issues
+npm run type-check   # Run TypeScript type checking
+npm run format       # Format code with Prettier
+
+# Dependencies
+npm run update       # Update dependencies
+npm audit            # Check for vulnerabilities
+```
+
+#### Project-Wide Commands
+```bash
+# Start all services for development
+npm run dev:all      # Start all services concurrently (if script exists)
+
+# Database management
+supabase start       # Start local Supabase
+supabase stop        # Stop local Supabase  
+supabase status      # Check service status
+supabase logs        # View logs
+
+# Docker operations
+docker-compose up -d                    # Start all services
+docker-compose down                     # Stop all services
+docker-compose logs -f                  # View logs
+docker-compose exec backend bash       # Access backend container
+docker-compose exec frontend sh        # Access frontend container
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+
+The project uses a single `.env` file in the root directory that configures both frontend and backend services. Here are the key sections:
+
+**Supabase Configuration:**
+```env
+# Production (Remote Supabase)
+SUPABASE_URL=https://kermpzcdqlgltgwicspi.supabase.co
+SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
+
+# Local Development (Local Supabase)
+LOCAL_SUPABASE_URL=http://127.0.0.1:54321
+LOCAL_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+LOCAL_SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+```
+
+**Backend Configuration:**
+```env
+# Database and Authentication
+DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:54322/postgres
+JWT_SECRET_KEY=super-secret-jwt-token-with-at-least-32-characters-long
+
+# Task Queue and Caching
+REDIS_URL=redis://localhost:6379/0
+CELERY_BROKER_URL=redis://localhost:6379/0
+CELERY_RESULT_BACKEND=redis://localhost:6379/0
+
+# API Configuration
+API_HOST=localhost
+API_PORT=8000
+CORS_ORIGINS=http://localhost:3000,https://corewebsitevitals.com
+```
+
+**Frontend Configuration:**
+```env
+# API and Services
+VITE_API_BASE_URL=http://localhost:8000/api/v1
+VITE_SUPABASE_URL=http://127.0.0.1:54321
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+# Development Settings
+NODE_ENV=development
+DEBUG=true
+```
+
+### Database Setup
+
+The database is automatically configured and migrated:
+
+1. **Supabase Project**: Already created (`kermpzcdqlgltgwicspi`)
+2. **Schema Migration**: Applied via `supabase/migrations/001_initial_schema.sql`
+3. **Tables Created**:
+   - `profiles` - User profiles with subscription management
+   - `analysis_tasks` - SEO analysis tasks and results
+   - `notifications` - User notification system
+   - `analysis_history` - Audit log for analysis changes
+   - `user_settings` - User preferences and configuration
+
+4. **Security Features**:
+   - Row Level Security (RLS) enabled on all tables
+   - Automatic user profile creation on registration
+   - Service role policies for backend operations
+   - Comprehensive indexes for performance
+
+5. **Local Development**: 
+   - Local Supabase instance handles all database operations
+   - Same schema as production for consistency
+   - Real-time subscriptions for live updates
+
+## 📊 SEO Analysis Features
+
+### Comprehensive Analysis Types
+
+1. **Full SEO Analysis**: Complete audit including all aspects
+2. **Technical SEO**: Focus on technical implementation
+3. **Content Analysis**: Content quality and keyword optimization
+4. **Performance Audit**: Core Web Vitals and performance metrics
+
+### Analysis Capabilities
+
+- **On-Page SEO**: Meta tags, headings, images, links, content quality
+- **Technical SEO**: Core Web Vitals, crawlability, security, structured data
+- **Content Analysis**: Keyword density, readability, text-to-HTML ratio
+- **Performance Metrics**: Loading speed, LCP, FID, CLS
+- **Security Checks**: SSL, HTTPS, mixed content detection
+- **Mobile Optimization**: Responsive design, viewport configuration
+
+### Key Features
+
+- **Real-Time Updates**: Live progress tracking during analysis
+- **Batch Processing**: Analyze multiple URLs simultaneously
+- **Historical Tracking**: Track SEO improvements over time
+- **Custom Scoring**: Configurable scoring weights and criteria
+- **Export Options**: PDF reports, CSV data, JSON exports
+- **Team Collaboration**: Share analyses with team members
+
+## 🛠️ API Documentation
+
+### Authentication
+
+```bash
+# Register a new user
+curl -X POST http://localhost:8000/api/v1/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"email": "user@example.com", "password": "password123", "full_name": "John Doe"}'
+
+# Login
+curl -X POST http://localhost:8000/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "user@example.com", "password": "password123"}'
+```
+
+### Analysis API
+
+```bash
+# Submit new analysis
+curl -X POST http://localhost:8000/api/v1/analyses/ \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://example.com", "analysis_type": "full_seo"}'
+
+# Get analysis results
+curl -X GET http://localhost:8000/api/v1/analyses/{analysis_id} \
+  -H "Authorization: Bearer YOUR_TOKEN"
+```
+
+## 🧪 Testing
+
+### Backend Tests
+
+```bash
+cd backend
+python -m pytest tests/ -v --cov=app --cov-report=html
+```
+
+### Frontend Tests
+
+```bash
+cd frontend
+npm run test:unit
+npm run test:e2e
+```
+
+## 📦 Deployment
+
+### Production Docker Setup
+
+```bash
+# Build and deploy
+docker-compose -f docker-compose.prod.yml up -d
+
+# Scale workers
+docker-compose -f docker-compose.prod.yml up -d --scale worker=4
+```
+
+### Environment-Specific Configurations
+
+- **Development**: Local development with hot reloading
+- **Staging**: Pre-production testing environment
+- **Production**: Optimized build with security hardening
+
+## 🔒 Security
+
+- **Row Level Security (RLS)**: Database-level access control
+- **JWT Authentication**: Secure token-based authentication
+- **Input Validation**: Comprehensive input sanitization
+- **CORS Configuration**: Secure cross-origin resource sharing
+- **Rate Limiting**: API rate limiting to prevent abuse
 
 ## 🤝 Contributing
 
-Contributions are welcome! Whether it's bug fixes, feature additions, or documentation improvements, please feel free to fork the repository, make your changes, and submit a pull request.
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
-Please read `CONTRIBUTING.md` for details on our code of conduct and the process for submitting pull requests.
+### Development Setup
 
-## 📜 License
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass
+6. Submit a pull request
+
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## 🙏 Acknowledgments
+
+This project is built upon the excellent work of the original [python-seo-analyzer](https://github.com/ihuzaifashoukat/seo-analyzer) created by [ihuzaifashoukat](https://github.com/ihuzaifashoukat). We extend our gratitude for providing the foundation SEO analysis modules that power this SaaS platform.
+
+### Original Project
+
+- **Repository**: https://github.com/ihuzaifashoukat/seo-analyzer
+- **Author**: [ihuzaifashoukat](https://github.com/ihuzaifashoukat)
+- **License**: MIT
+
+The original command-line tool provided the core SEO analysis capabilities that have been integrated into this full-stack SaaS platform. We encourage users to also check out the original project for command-line usage.
+
+### Support the Original Author
+
+If you find the underlying SEO analysis capabilities useful, consider supporting the original author:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/ihuzaifashoukat)
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/your-username/core-website-vitals/issues)
+- **Documentation**: [Wiki](https://github.com/your-username/core-website-vitals/wiki)
+- **Email**: support@corewebsitevitals.com
+
 ---
 
-*Improve your web presence with SEO insights from this tool!*
+*Transform your SEO analysis workflow with Core Website Vitals - the modern SaaS platform for comprehensive website optimization.*

@@ -1,0 +1,111 @@
+{
+  "mcpServers": {
+    "fetch": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-fetch"
+      ],
+      "env": {},
+      "disabled": true,
+      "autoApprove": []
+    },
+    "taskmaster-ai": {
+      "command": "bunx",
+      "args": [
+        "-y",
+        "--package=task-master-ai",
+        "task-master-ai"
+      ],
+      "env": {
+        "GOOGLE_API_KEY": "AIzaSyA5yjsqHpeceCq-b20NHbFhZ9By6urIHo0"
+      },
+      "disabled": true
+    },
+    "neo4j": {
+      "command": "uvx",
+      "args": [
+        "mcp-neo4j-memory@0.1.5"
+      ],
+      "env": {
+        "NEO4J_URL": "neo4j+s://77774afb.databases.neo4j.io",
+        "NEO4J_USERNAME": "neo4j",
+        "NEO4J_PASSWORD": "NuQqHGFwrGEWxCAxLRpD-iHUR23nqxgjGQc31tRw4Xw"
+      }
+    },
+    "ref-tools-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@ref-tools/ref-tools-mcp",
+        "--key",
+        "35c8f599-bb13-4659-8f67-3c3af40a61a2",
+        "--profile",
+        "extraordinary-swift-OpfklU"
+      ],
+      "disabled": false
+    },
+    "server-sequential-thinking": {
+      "command": "bunx",
+      "args": [
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@smithery-ai/server-sequential-thinking",
+        "--key",
+        "35c8f599-bb13-4659-8f67-3c3af40a61a2"
+      ],
+      "disabled": false
+    },
+    "supabase": {
+      "command": "bunx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--access-token",
+        "sbp_a20ec5fc3c36f7f7d4b3845aac3abaede0ef75a4"
+      ],
+      "disabled": false
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@smithery-ai/github",
+        "--key",
+        "35c8f599-bb13-4659-8f67-3c3af40a61a2",
+        "--profile",
+        "extraordinary-swift-OpfklU"
+      ],
+      "disabled": false
+    },
+    "mcp-send-email": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@resend/mcp-send-email",
+        "--key",
+        "35c8f599-bb13-4659-8f67-3c3af40a61a2",
+        "--profile",
+        "extraordinary-swift-OpfklU"
+      ]
+    },
+    "cloudflare": {
+			"command": "npx",
+			"args": ["mcp-remote", "https://bindings.mcp.cloudflare.com/sse"]
+		},
+    "cloudflare-containers": {
+			"command": "npx",
+			"args": ["mcp-remote", "https://containers.mcp.cloudflare.com/sse"]
+		},
+    "cloudflare-browser": {
+			"command": "npx",
+			"args": ["mcp-remote", "https://browser.mcp.cloudflare.com/sse"]
+		}
+  }
+}
