@@ -62,7 +62,8 @@ def create_supabase_admin_client() -> Client:
     Create a Supabase admin client for service operations.
     This client bypasses Row Level Security policies.
     
-    Returns:
+    Returns:50MB
+    
         Configured Supabase admin client instance
         
     Raises:
