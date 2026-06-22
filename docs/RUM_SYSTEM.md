@@ -209,6 +209,42 @@ Account (customer)
     └── db in APAC region      → APAC-regime visitor data
 ```
 
+## Encryption
+
+Encryption is applied at three layers so that data is protected on the wire, on
+disk, and against the database operator itself.
+
+- **In transit (TLS everywhere).** The snippet → edge → Neon path is TLS 1.3 end
+  to end. Beacons use `sendBeacon`/`fetch` over HTTPS only; the edge connects to
+  Neon over TLS. No plaintext hop exists anywhere in the pipeline.
+- **Encryption at rest.** Neon encrypts all stored data (database pages, WAL, and
+  backups) at rest with **AES-256** by default. This covers every tenant database
+  and every regional shard automatically.
+- **End-to-end / application-layer encryption (operator-blind).** On top of
+  at-rest encryption, sensitive RUM payloads are encrypted **in the application,
+  before they are written to Neon**, using **envelope encryption**:
+  - A central **KMS** holds a per-tenant root key (CMK). Each tenant has its own
+    key, so cross-tenant decryption is impossible even with full DB access.
+  - The edge encrypts the event's sensitive fields/JSONB (`behavior`,
+    attribution detail) with a tenant data key wrapped by the tenant CMK. Neon
+    stores only ciphertext for those fields; the database — and anyone with
+    direct DB or backup access, including Neon operators and us — sees only
+    ciphertext.
+  - Decryption happens only in the application tier when rendering the dashboard
+    for an authenticated, authorized member of that tenant.
+  - Coarse, non-sensitive aggregate columns used for indexing/rollups (e.g.
+    `lcp_p75`, `country`, `privacy_bucket`, timestamps) remain queryable in
+    plaintext so percentile rollups and residency routing work without
+    decrypting per-row payloads.
+  - **Key rotation & deletion:** rotating a tenant CMK re-wraps data keys without
+    rewriting ciphertext; destroying a tenant CMK cryptographically shreds that
+    tenant's data (crypto-erase), which is also how regime-driven deletion is
+    honored.
+
+Per-tenant keys reinforce the database-per-tenant isolation: isolation prevents
+cross-tenant *queries*, and per-tenant E2E keys make cross-tenant *plaintext*
+unrecoverable even if isolation were bypassed.
+
 ## Regional privacy bucketing of visitors
 
 Within a tenant's isolated database, each RUM event is **bucketed by the
@@ -393,6 +429,9 @@ The existing privacy section now references RUM explicitly:
   **discarded** — they never reach storage.
 - We never read element IDs, page text content, or form values.
 - We respect **Global Privacy Control** and **Do Not Track**.
+- Data is **encrypted in transit (TLS 1.3)**, **at rest (AES-256)**, and with
+  **per-tenant end-to-end encryption** so sensitive payloads are unreadable even
+  to the database operator.
 - Because we set no cookies and process no personal data, **no consent banner is
   required** in most jurisdictions.
 - The collection snippet is **open source** — verify every claim yourself.
