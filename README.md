@@ -193,6 +193,106 @@ The output JSON provides a detailed breakdown of the SEO audit:
 If you find SEO ANALYZER useful and would like to support its development, consider buying me a coffee!
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/ihuzaifashoukat)
+## 📡 Real User Monitoring (RUM) — field data, privacy-first
+
+The analyzer ships with an optional **Real User Monitoring** system that turns the
+point-in-time *lab* auditor into a continuous *field*-measurement product. Instead
+of waiting ~28 days for Google's CrUX average, you get **your own Core Web Vitals
+field data starting with the first visitor after install**.
+
+> **Real performance data from real users — without tracking a single one of them.**
+
+Full design spec: [`docs/RUM_SYSTEM.md`](docs/RUM_SYSTEM.md). Code lives in the
+[`rum/`](rum/) package and mounts automatically onto the Flask app.
+
+### What it measures (per session, in real time)
+
+- **Core Web Vitals** — LCP, CLS, and **INP with the three-part breakdown**
+  (input delay / processing time / presentation delay), the headline diagnostic
+  that shows *where* an interaction is slow.
+- **Coarse CWV attribution** — LCP element and CLS shift sources by **tag + ARIA
+  role only** (never id/text).
+- **Behavior** — click positions (viewport %), scroll depth, **rage clicks**,
+  **dead clicks**, throttled mouse movement, and ordered page-path session flow,
+  for heatmaps and UX diagnostics.
+
+### The snippet
+
+First-party, **open source**, `< 5KB gzipped` (~3.7 KB unminified), `async`, zero
+render-blocking — [`rum/snippet/liftlog-rum.js`](rum/snippet/liftlog-rum.js).
+
+```html
+<script async src="https://your-domain/rum/liftlog-rum.js"
+        data-site="123" data-endpoint="https://your-domain/rum/collect"></script>
+```
+
+### Dashboard
+
+Two tabs are added to the site detail page (`/rum/sites/<id>`):
+
+- **Real Users** — live CWV gauges (p75 + thresholds), `<INPBreakdownBar>` stacked
+  viz, LCP-element & CLS-source tracking, device/connection breakdown, per-page
+  performance table, and `<RUMvsCruxComparison>` badges.
+- **Heatmaps** — click/scroll/movement heatmaps on a `<canvas>` overlaid on
+  server-captured screenshots, `<RageClickAlert>`, `<DeadClickAlert>`,
+  `<ScrollDepthGauge>`, and `<SessionFlowDiagram>`.
+
+### Architecture (Neon, isolation, residency, encryption)
+
+- **Database-per-tenant isolation** on **Neon** (serverless Postgres): each
+  account gets its **own** database — there is no shared `tenant_id` column; the
+  database *is* the boundary.
+- **Regional residency**: events are routed to the tenant's database in the region
+  matching their `privacy_bucket` (`GDPR`→EU, `CCPA`→US, `APAC`→APAC). PIPL/China
+  traffic is kept in-region or dropped, never transferred out.
+- **Encryption in depth**: TLS 1.3 in transit, AES-256 at rest (Neon), **plus
+  per-tenant end-to-end envelope encryption** — sensitive JSONB (`behavior`,
+  attribution) is encrypted in the app *before* write, so the operator sees only
+  ciphertext. Destroying a tenant's KMS key crypto-erases its data.
+
+### Pricing tiers
+
+| Capability | Free | Pro | Agency |
+| ---------- | :--: | :-: | :----: |
+| RUM Core Web Vitals + INP breakdown | ✗ | ✓ | ✓ |
+| Click / scroll heatmaps, rage / dead clicks | ✗ | ✓ | ✓ |
+| Movement heatmaps, session flow, per-page breakdowns | ✗ | ✗ | ✓ |
+| Raw event retention | — | 24 h | 7 days |
+| Rollup retention | — | 90 days | 90 days+ |
+
+### Operating it
+
+```bash
+# Provision/upgrade each tenant/region database (set RUM_TENANT_DB__<TENANT>__<REGION>):
+python -m rum.migrate
+
+# Aggregate raw events into hourly/daily/weekly rollups and apply retention:
+python -m rum.rollups all      # run on a schedule (cron / Neon scheduled job)
+```
+
+Key environment variables: `RUM_TENANT_DB__<TENANT>__<REGION>` (or
+`RUM_DATABASE_URL` for single-DB dev), `RUM_KMS_MASTER_KEY` (per-tenant envelope
+encryption), `RUM_SITE_TENANT__<site_id>`, `RUM_SCREENSHOT_BASE`. Without a DB or
+KMS configured the system runs in an in-memory dev mode so you can try it locally.
+
+### 🔒 Privacy
+
+The RUM system collects real-user performance and behavior data **without any PII**:
+
+- **No cookies**, no device identifiers, no fingerprinting, no cross-site tracking.
+- Visitor IPs are used only for a **country-only** lookup at the edge and are then
+  **discarded** — they never reach storage, logs, or rollups.
+- We **never read element IDs, page text content, or form values**; attribution is
+  coarse tag + ARIA role only.
+- We respect **Global Privacy Control** and **Do Not Track** — when set, the
+  snippet collects and sends nothing.
+- Data is **encrypted in transit (TLS 1.3)**, **at rest (AES-256)**, and with
+  **per-tenant end-to-end encryption** so sensitive payloads are unreadable even
+  to the database operator.
+- Because we set no cookies and process no personal data, **no consent banner is
+  required** in most jurisdictions.
+- The collection snippet is **open source** — verify every claim yourself.
+
 ## 💡 Future Enhancements
 
 We're always looking to improve! Potential future features include:

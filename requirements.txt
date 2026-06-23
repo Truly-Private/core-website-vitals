@@ -4,3 +4,10 @@ dnspython
 Pillow
 pyspellchecker
 flask
+# RUM system (optional but recommended in production):
+#   psycopg      — Neon (serverless Postgres) driver for the per-tenant stores.
+#   cryptography — AES-256-GCM envelope encryption for per-tenant E2E payloads.
+# Both are imported lazily; the app degrades to an in-memory dev store and
+# plaintext-local mode if they are absent.
+psycopg[binary]
+cryptography
