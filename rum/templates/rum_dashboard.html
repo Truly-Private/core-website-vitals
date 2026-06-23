@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Real Users &amp; Heatmaps — Site {{ site_id }}</title>
+  <link rel="stylesheet" href="{{ url_for('rum.static', filename='rum_dashboard.css') }}">
+</head>
+<body
+  data-site-id="{{ site_id }}"
+  data-tier="{{ tier }}"
+  data-rum-enabled="{{ '1' if rum_enabled else '0' }}"
+  data-snippet-src="{{ snippet_src }}"
+  data-collect-endpoint="{{ collect_endpoint }}">
+
+  <header class="rum-header">
+    <h1>Field Data <span class="rum-badge tier-{{ tier }}">{{ tier|capitalize }}</span></h1>
+    <p class="rum-sub">Real performance data from real users — without tracking a single one of them.</p>
+  </header>
+
+  <nav class="rum-tabs" role="tablist">
+    <button class="rum-tab active" data-tab="realusers" role="tab">Real Users</button>
+    <button class="rum-tab" data-tab="heatmaps" role="tab">Heatmaps</button>
+    <button class="rum-tab" data-tab="install" role="tab">Install</button>
+  </nav>
+
+  {% if not rum_enabled %}
+  <div class="rum-upsell">
+    <h2>RUM is a Pro / Agency feature</h2>
+    <p>The Free plan includes lab audits and CrUX. Upgrade to collect your own
+       real-user Core Web Vitals, INP breakdowns, and heatmaps — starting with
+       your first visitor after install.</p>
+  </div>
+  {% endif %}
+
+  <!-- ===================== Real Users tab ===================== -->
+  <section class="rum-panel active" data-panel="realusers">
+    <div id="ru-empty" class="rum-empty" hidden>No real-user data yet. Install the snippet and your first visitor populates this in real time.</div>
+
+    <h2 class="rum-section-title">Live Core Web Vitals <small>p75 &middot; <span id="ru-samples">0</span> samples</small></h2>
+    <div id="cwv-gauges" class="cwv-gauges"><!-- gauges injected --></div>
+
+    <h2 class="rum-section-title">INP breakdown <small>where the interaction time goes</small></h2>
+    <div id="inp-breakdown"><!-- INPBreakdownBar injected --></div>
+
+    <h2 class="rum-section-title">RUM vs CrUX</h2>
+    <div id="rum-vs-crux" class="rum-vs-crux"><!-- RUMvsCruxComparison injected --></div>
+
+    <div class="rum-grid-2">
+      <div>
+        <h2 class="rum-section-title">LCP element tracking</h2>
+        <ul id="lcp-elements" class="rum-list"></ul>
+      </div>
+      <div>
+        <h2 class="rum-section-title">CLS source tracking</h2>
+        <ul id="cls-sources" class="rum-list"></ul>
+      </div>
+    </div>
+
+    <h2 class="rum-section-title">Device &amp; connection breakdown</h2>
+    <div id="device-connection" class="rum-grid-2"></div>
+
+    <h2 class="rum-section-title">Per-page performance <small id="page-scope"></small></h2>
+    <table id="per-page" class="rum-table">
+      <thead><tr><th>Page</th><th>Samples</th><th>LCP p75</th><th>CLS p75</th><th>INP p75</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- ===================== Heatmaps tab ===================== -->
+  <section class="rum-panel" data-panel="heatmaps">
+    <div class="rum-toolbar">
+      <label>Page <input id="hm-page" type="text" placeholder="/ (all pages)" value=""></label>
+      <button id="hm-refresh">Refresh</button>
+      <div class="hm-legend">
+        <button class="hm-layer active" data-layer="click">Clicks</button>
+        <button class="hm-layer" data-layer="move" data-feature="movement_heatmap">Movement</button>
+        <button class="hm-layer" data-layer="rage">Rage</button>
+        <button class="hm-layer" data-layer="dead">Dead</button>
+      </div>
+    </div>
+
+    <div class="heatmap-stage">
+      <img id="hm-screenshot" alt="" hidden>
+      <canvas id="heatmap-canvas" width="1024" height="640"></canvas>
+      <div id="hm-noscreenshot" class="hm-noscreenshot">Heatmap overlays on a server-captured screenshot. (No screenshot service configured — showing density grid on a neutral canvas.)</div>
+    </div>
+
+    <div class="rum-grid-2">
+      <div id="rage-alert"><!-- RageClickAlert --></div>
+      <div id="dead-alert"><!-- DeadClickAlert --></div>
+    </div>
+
+    <h2 class="rum-section-title">Scroll depth</h2>
+    <div id="scroll-depth"><!-- ScrollDepthGauge --></div>
+
+    <h2 class="rum-section-title">Session flow <small class="agency-only">Agency</small></h2>
+    <div id="session-flow"><!-- SessionFlowDiagram --></div>
+  </section>
+
+  <!-- ===================== Install tab ===================== -->
+  <section class="rum-panel" data-panel="install">
+    <h2 class="rum-section-title">Install the RUM snippet</h2>
+    <div id="install-snippet"><!-- RUMInstallSnippet --></div>
+    <p class="rum-note">
+      The snippet is <a href="{{ snippet_src }}" target="_blank" rel="noopener">open source</a> —
+      &lt; 5KB gzipped, async, zero render-blocking. It sets no cookies, reads no
+      element IDs / text / form values, and respects Global Privacy Control and Do
+      Not Track. Visitor IPs are used only for a country-only lookup at our edge
+      and then discarded.
+    </p>
+  </section>
+
+  <script src="{{ url_for('rum.static', filename='rum_dashboard.js') }}"></script>
+</body>
+</html>

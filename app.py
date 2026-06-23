@@ -38,7 +38,15 @@ if Flask:
     app = Flask(__name__)
     # Global variable to hold the loaded configuration for the Flask app
     # This will be set when the app starts, similar to how CLI loads config
-    flask_app_config = DEFAULT_CONFIG.copy() 
+    flask_app_config = DEFAULT_CONFIG.copy()
+
+    # Mount the Real User Monitoring (RUM) system: ingest endpoint, open-source
+    # snippet, and the "Real Users" + "Heatmaps" dashboard tabs. See docs/RUM_SYSTEM.md.
+    try:
+        import rum
+        rum.register(app)
+    except Exception as _rum_exc:  # keep the core analyzer running even if RUM fails to load
+        print(f"Warning: RUM system not loaded: {_rum_exc}")
 else:
     app = None
 
